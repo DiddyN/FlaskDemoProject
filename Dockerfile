@@ -12,6 +12,7 @@ RUN pip install --upgrade pip
 
 ADD ./src/ ./app/src
 ADD ./requirements.txt ./app
+ADD ./server/ ./app
 
 WORKDIR ./app
 RUN pip3 install -r requirements.txt
@@ -19,4 +20,4 @@ RUN pip3 install -r requirements.txt
 ENV PYTHONPATH "${PYTHONPATH}:./"
 ENV PYTHONIOENCODING="utf-8"
 
-CMD ["python3","./src/app.py"]
+CMD ./start.sh
