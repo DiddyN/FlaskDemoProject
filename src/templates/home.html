@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<body>
+	<h2>Brojevi:</h2>
+	<div id="numbers">
+	</div>
+	<button type="button" onclick="add()">Saberi</button>
+	<button type="button" onclick="multiply()">Pomnozi</button>
+	<br />
+	<h2>Rezultat:</h2>
+	<h3 id="res"></h3>
+	<script>
+		var count = 5;
+		var divNumbers = document.getElementById("numbers");
+		for (var i = 1; i <= count; i++) {
+			var input = document.createElement("input");
+			input.type = "number";
+			input.id = "num" + i;
+			divNumbers.appendChild(input);
+		}
+
+		function getNumbers() {
+			var numbers = [];
+			for (var i = 1; i <= count; i++) {
+				var number = parseFloat(document.getElementById("num" + i).value);
+				if (isNaN(number))
+					numbers.push(0);
+				else
+					numbers.push(number);
+			}
+			console.log(numbers);
+			return numbers;
+		}
+	
+		async function add() {
+			console.log('add');
+			var numbers = getNumbers();
+
+			var list_of_nums = [];
+			for (var idx in numbers) {
+			   list_of_nums.push({
+				   'number': numbers[idx]
+			   })
+			}
+
+			var numbersJson = {
+				"numbers": list_of_nums
+			};
+
+			console.log(numbersJson);
+
+			try {
+				const config = {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(numbersJson)
+				};
+				const response = await fetch('http://localhost:5000/api/addition/', config);
+				data = await response.json();
+				console.log(data);
+				document.getElementById("res").innerHTML = data.result;
+
+			} catch (error) {
+				//
+			}
+		}
+		
+		async function multiply() {
+			console.log('multiply');
+			var numbers = getNumbers();
+
+			var list_of_nums = [];
+			for (var idx in numbers) {
+			   list_of_nums.push({
+				   'number': numbers[idx]
+			   })
+			}
+
+			var numbersJson = {
+				"numbers": list_of_nums
+			};
+
+			try {
+				const config = {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(numbersJson)
+				};
+				const response = await fetch('http://localhost:5000/api/multiplication/', config);
+				data = await response.json();
+				console.log(data);
+				document.getElementById("res").innerHTML = data.result;
+
+			} catch (error) {
+				//
+			}
+		}
+	</script>
+	</body>
+</html>

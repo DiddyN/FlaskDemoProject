@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restplus import Api
+from flask import render_template
 
 from src.controller.status_controller import api as status_ns
 from src.controller.addition_controller import api as add_ns
@@ -17,6 +18,11 @@ api = Api(app=app, title=app_title,
 api.add_namespace(status_ns, path="/status")
 api.add_namespace(add_ns, path="/api/addition")
 api.add_namespace(multi_ns, path="/api/multiplication")
+
+
+@app.route('/home/')
+def home():
+    return render_template('home.html')
 
 
 if __name__ == '__main__':
