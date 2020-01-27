@@ -1,6 +1,7 @@
 
 from flask_restplus import Resource
 from flask import request
+from flask_jwt_extended import jwt_required
 
 from src.dto import MultiplicationDto
 
@@ -11,6 +12,7 @@ _response = MultiplicationDto.response
 
 @api.route('/')
 class Multiplication(Resource):
+    @jwt_required
     @api.response(200, 'Successfully Requested', _response)
     @api.response(400, 'Bad Request')
     @api.doc('Multiplication of wanted numbers')

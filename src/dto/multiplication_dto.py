@@ -12,7 +12,8 @@ class MultiplicationDto:
 
     request = api.model('request',
                         {
-                            'numbers': fields.List(fields.Nested(m_number))
+                            'numbers': fields.List(fields.Nested(m_number)),
+                            'access_token': fields.String(description='Value of access token.')
                         })
 
     response = api.model('response', {

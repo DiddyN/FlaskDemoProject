@@ -10,11 +10,12 @@ class AdditionDto:
                                                  example="10.5")
                           })
 
-    request = api.model('request',
+    request = api.model('addition-request',
                         {
-                            'numbers': fields.List(fields.Nested(m_number))
+                            'numbers': fields.List(fields.Nested(m_number)),
+                            'access_token': fields.String(description='Value of access token.')
                         })
 
-    response = api.model('response', {
+    response = api.model('addition-response', {
         'result': fields.Float(required=True, description='Result of wanted math operation.')
     })

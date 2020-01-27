@@ -2,20 +2,27 @@ from flask import Flask
 from flask_restplus import Api
 from flask import render_template
 
+from flask_jwt_extended import JWTManager
+
 from src.controller.status_controller import api as status_ns
 from src.controller.addition_controller import api as add_ns
 from src.controller.multiplication_controller import api as multi_ns
+from src.controller.login_controller import api as login_ns
 
 app_title = 'Template project for Flask'
 app_description = 'Showcase project for building Flask micro-service web app.'
 
 app = Flask(__name__)
+app.config['JWT_TOKEN_LOCATION'] = ['json']
+app.config['JWT_SECRET_KEY'] = 'super-secret-key'
+jwt = JWTManager(app)
 
 api = Api(app=app, title=app_title,
           version='1.0',
           description=app_description)
 
 api.add_namespace(status_ns, path="/status")
+api.add_namespace(login_ns, path="/login")
 api.add_namespace(add_ns, path="/api/addition")
 api.add_namespace(multi_ns, path="/api/multiplication")
 
