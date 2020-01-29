@@ -1,5 +1,6 @@
-redis
 Flask==1.1.1
 flask-restplus==0.13.0
+flask_jwt_extended
+flask_sqlalchemy
 wheel==0.33.6
 uwsgi==2.0.18

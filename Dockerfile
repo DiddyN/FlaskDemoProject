@@ -7,7 +7,6 @@ RUN apt-get update -y
 RUN apt-get upgrade -y
 RUN apt update -y
 RUN apt install python3-pip python3-dev build-essential libssl-dev libffi-dev python3-setuptools -y
-RUN apt-get install redis-server -y
 RUN pip install --upgrade pip
 
 ADD ./src/ ./app/src
