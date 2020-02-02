@@ -8,6 +8,9 @@ class AddBookDto:
     request = api.model('add-book-request',
                         {
                             'title': fields.String(description='Book title.', example='Crime and punishment'),
+                            'author': fields.String(description='Name of author', example='Lav Tolstoy'),
+                            'year': fields.Integer(description='Year of book\'s edition', example='1973'),
+                            'language': fields.String(description='Language in which the book was written.', example='Russian'),
                             'access_token': fields.String(description='Value of access token.')
                         })
 
