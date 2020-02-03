@@ -12,5 +12,6 @@ class LoginDto:
                         })
 
     response = api.model('login-response', {
+        'status': fields.String(description='Status of auth.'),
         'access_token': fields.String(description='Access token used for auth.')
     })

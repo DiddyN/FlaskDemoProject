@@ -7,8 +7,7 @@ class UpdateBookDto:
 
     request = api.model('update-book-request',
                         {
-                            'new_title': fields.String(description='New book title.', example='Anna Karenina'),
-                            'old_title': fields.String(description='Old book title.', example='Crime and punishment'),
+                            'title': fields.String(description='Book title.', example='Crime and punishment'),
                             'new_year': fields.Integer(description='New edition year', example='1994'),
                             'new_author': fields.String(description='New author(name) of the books.', example='Fyodor Dostoyevsky'),
                             'new_language': fields.String(description='New language in which the book was written.', example='Serbian'),

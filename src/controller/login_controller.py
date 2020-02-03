@@ -11,10 +11,10 @@ _response = LoginDto.response
 
 
 @api.route('/')
-class Addition(Resource):
+class Login(Resource):
     @api.response(200, 'Successfully Requested', _response)
     @api.response(400, 'Bad Request')
-    @api.doc('Addition of wanted numbers.')
+    @api.doc('User login.')
     @api.expect(_request, validate=True)
     @api.marshal_with(fields=_response)
     def post(self):
