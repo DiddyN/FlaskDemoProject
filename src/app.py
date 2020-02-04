@@ -2,7 +2,6 @@
 import os
 from flask import Flask, request
 from flask_restplus import Api, Resource
-from flask import render_template
 
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from flask_sqlalchemy import SQLAlchemy
@@ -522,11 +521,6 @@ class UserReturnBook(Resource):
             return {
                 'status': "Failed to return the book. Exception: " + str(e)
             }
-
-
-@app.route('/home/')
-def home():
-    return render_template('home.html')
 
 
 if __name__ == '__main__':
